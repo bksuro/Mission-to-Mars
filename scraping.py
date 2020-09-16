@@ -8,8 +8,8 @@ import datetime as dt
 #!which chromedriver
 
 # Windows users
-executable_path = {'executable_path': 'chromedriver.exe'}
-browser = Browser('chrome', **executable_path, headless=False)
+#executable_path = {'executable_path': 'chromedriver.exe'}
+#browser = Browser('chrome', **executable_path, headless=False)
 
 def scrape_all():
    # Initiate headless driver for deployment
