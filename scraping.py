@@ -23,7 +23,8 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        "last_modified": dt.datetime.now()
+        "last_modified": dt.datetime.now(),
+        "hemispheres": image_urls(browser)
    }
 
    # Stop webdriver and return data
@@ -184,6 +185,45 @@ def mars_facts():
     
     return df.to_html()
 
+def image_urls(browser):
+    # Variable to hold list of dictionary items
+    hemisphere_image_urls = []
+    
+    # base url for visiting liks and coming back
+    base_url = 'https://astrogeology.usgs.gov'
+    
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+    
+    html = browser.html
+    thumb_soup = soup(html, 'html.parser')
+    
+    # Find all divs with class item
+    # then find all div with class description 
+    #   this gives hyperlink to the page and name of image
+    # use the link as url and get to that new page
+    # find the div with class downloads
+    # then get the a and its href attribute for the full link of the image
+    # build a dictionary and append the item to the list
+    for href in thumb_soup.find_all('div', class_='item'):
+        for item in href.find_all('div', class_='description'):
+            tmpUrl = item.find('a').get('href')
+            tmpName = item.find('h3').get_text()
+            #print(tmpName)
+            new_url = base_url + tmpUrl
+            #print(new_url)
+            browser.visit(new_url)
+            htmln = browser.html
+            full_soup = soup(htmln, 'html.parser')
+            downlds = full_soup.find('div', class_='downloads')
+            hyperLink = downlds.find('a').get('href')
+            #print(hyperLink)
+            dictI = {'img_url': hyperLink,
+                     'title': tmpName}
+            hemisphere_image_urls.append(dictI)
+            browser.back()
+    return hemisphere_image_urls
+    
 #browser.quit()
 if __name__ == "__main__":
     
