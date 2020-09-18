@@ -25,19 +25,19 @@ Data stored in mondo db as follows
 
 
 
-Webpage with image, facts, and hemishpheres as 3 columns of width 4 each.
+Webpage with image, facts, and hemishpheres as 3 columns of width 4 each :
 
   !["3cols width 4 page"](./Resources/mars_page_3_grid.png "3 columns")
   
 
 
-Webpage with hemispheres on a row with 4 columns of width 3 each.
+Webpage with hemispheres on a row with 4 columns of width 3 each :
 
   !["images col width 3"](./Resources/mars_page_col3_grid.png "col-md-3")
   
 
 
-Webpage with hemispheres on a row with 2 columns of width 6 each.
+Webpage with hemispheres on a row with 2 columns of width 6 each :
 
   !["images col width 6"](./Resources/mars_page_col6_grid.png "col-md-6")
   
