@@ -62,11 +62,11 @@
             </div>
 
             {% for hemisphere in mars.hemispheres %}
-            <div class="col-md-3">
+            <div class="col-md-3" style="padding: 4px;">
               <div class="thumbnail">
                 <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
-                <div class="caption">
-                  <h8>{{hemisphere.title}}</h8>
+                <div class="caption" style="word-wrap: break-word; font-size: 11px; padding: 0px;">
+                  <span>{{hemisphere.title}}</span>
                 </div>
               </div>
             </div>
